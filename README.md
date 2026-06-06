@@ -136,7 +136,7 @@ DEMO_STATE=CA
 Join the Twilio sandbox before receiving alerts:
 
 1. Open WhatsApp
-2. Send `join <word>` to **+1 415 523 8886**
+2. Send `join record-brain` to **+1 415 523 8886**
 3. Receive confirmation → you're ready ✅
 
 ---

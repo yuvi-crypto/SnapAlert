@@ -194,7 +194,7 @@ export default function OptInModal({ onClose }) {
               </div>
               <div className="whatsapp-note">
                 <span>💬</span>
-                <span>Make sure you've joined the Twilio WhatsApp sandbox by sending <strong>"join &lt;word&gt;"</strong> to <strong>+1 415 523 8886</strong></span>
+                <span>Make sure you've joined the Twilio WhatsApp sandbox by sending <strong>"join record-brain"</strong> to <strong>+1 415 523 8886</strong></span>
               </div>
               <button id="send-otp-btn" className="btn-primary w-full" onClick={handleSendOTP} disabled={loading}>
                 {loading ? <Spinner /> : '💬'}
