@@ -80,7 +80,7 @@ export default function SnapAlertBadge() {
               <span className="snap-dropdown-title">
                 <span className="dot-green" /> SnapAlert Active
               </span>
-              <a href="/snapalert" className="snap-view-all">View all →</a>
+              <button className="snap-view-all" onClick={() => setShowDropdown(false)}>View all ✕</button>
             </div>
 
             {recentAlerts.length === 0 ? (
@@ -124,9 +124,9 @@ export default function SnapAlertBadge() {
               </div>
             )}
 
-            <a href="/snapalert" className="snap-dashboard-btn">
-              Open Dashboard
-            </a>
+            <button className="snap-dashboard-btn" onClick={() => setShowDropdown(false)}>
+              Close
+            </button>
           </div>
         )}
       </div>

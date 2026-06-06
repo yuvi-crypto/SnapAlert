@@ -154,6 +154,10 @@
   color: #a78bfa;
   text-decoration: none;
   font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 .snap-view-all:hover { text-decoration: underline; }
 
@@ -223,6 +227,7 @@
 
 .snap-dashboard-btn {
   display: block;
+  width: calc(100% - 16px);
   margin: 8px;
   padding: 10px;
   text-align: center;
@@ -234,6 +239,8 @@
   font-weight: 600;
   text-decoration: none;
   transition: all 0.2s;
+  cursor: pointer;
+  box-sizing: border-box;
 }
 .snap-dashboard-btn:hover {
   background: linear-gradient(135deg, rgba(124,58,237,0.3) 0%, rgba(79,70,229,0.2) 100%);
