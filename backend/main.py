@@ -2,7 +2,14 @@
 SnapAlert FastAPI application entry point.
 """
 import logging
+import os
+import sys
 from contextlib import asynccontextmanager
+
+# Add backend directory to sys.path to resolve imports correctly when deployed on Vercel
+backend_dir = os.path.dirname(os.path.abspath(__file__))
+if backend_dir not in sys.path:
+    sys.path.append(backend_dir)
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
