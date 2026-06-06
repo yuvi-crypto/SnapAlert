@@ -1,13 +1,11 @@
 {
-  "version": 2,
-  "experimentalServices": {
-    "web": {
-      "entrypoint": "frontend",
-      "routePrefix": "/"
-    },
-    "api": {
-      "entrypoint": "backend.main:app",
-      "routePrefix": "/api"
+    "experimentalServices": {
+        "frontend": {
+            "routePrefix": "/"
+        },
+        "backend": {
+            "root": "backend",
+            "routePrefix": "/_/backend"
+        }
     }
-  }
 }
