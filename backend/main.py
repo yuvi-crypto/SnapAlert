@@ -6,10 +6,14 @@ import os
 import sys
 from contextlib import asynccontextmanager
 
-# Add backend directory to sys.path to resolve imports correctly when deployed on Vercel
+# Ensure the backend directory is on sys.path for consistent imports
+# whether running locally (python -m uvicorn backend.main:app) or via Vercel.
 backend_dir = os.path.dirname(os.path.abspath(__file__))
 if backend_dir not in sys.path:
-    sys.path.append(backend_dir)
+    sys.path.insert(0, backend_dir)
+
+# Detect Vercel serverless environment — APScheduler cannot run there.
+_IS_VERCEL = bool(os.environ.get("VERCEL"))
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -34,14 +38,22 @@ async def lifespan(app: FastAPI):
     # Startup
     logger.info("🚀 SnapAlert starting up...")
     create_tables()
-    start_scheduler()
-    logger.info(
-        f"📡 Polling RealEstateAPI every {settings.poll_interval_seconds}s | "
-        f"Match threshold: {settings.match_threshold}"
-    )
+
+    # APScheduler requires a persistent process — skip on Vercel serverless.
+    if not _IS_VERCEL:
+        start_scheduler()
+        logger.info(
+            f"📡 Polling RealEstateAPI every {settings.poll_interval_seconds}s | "
+            f"Match threshold: {settings.match_threshold}"
+        )
+    else:
+        logger.info("⚡ Running on Vercel — background poller disabled (serverless).")
+
     yield
+
     # Shutdown
-    stop_scheduler()
+    if not _IS_VERCEL:
+        stop_scheduler()
     logger.info("SnapAlert shut down")
 
 
@@ -78,4 +90,5 @@ def health():
 
 if __name__ == "__main__":
     import uvicorn
+    # Run from the backend/ directory: python main.py
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
