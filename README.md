@@ -1,4 +1,4 @@
-# SnapAlert 🔔
+# SnapAlert 🔔 prototype url: https://sanp-alert.vercel.app/
 
 **Hyper-personalised deal alert engine that WhatsApps buyers the moment their perfect home hits the market.**
 
