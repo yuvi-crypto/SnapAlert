@@ -1,6 +1,13 @@
 {
   "version": 2,
-  "env": {
-    "PYTHONPATH": "backend"
+  "experimentalServices": {
+    "web": {
+      "entrypoint": "frontend",
+      "routePrefix": "/"
+    },
+    "api": {
+      "entrypoint": "backend.main:app",
+      "routePrefix": "/api"
+    }
   }
 }
