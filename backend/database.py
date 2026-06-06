@@ -5,11 +5,18 @@ from datetime import datetime
 
 from config import get_settings
 
+import os
+
 settings = get_settings()
 
+db_url = settings.database_url
+# On Vercel, the filesystem is read-only. Redirect SQLite to /tmp/snapalert.db.
+if db_url.startswith("sqlite://") and os.environ.get("VERCEL"):
+    db_url = "sqlite:////tmp/snapalert.db"
+
 engine = create_engine(
-    settings.database_url,
-    connect_args={"check_same_thread": False} if "sqlite" in settings.database_url else {}
+    db_url,
+    connect_args={"check_same_thread": False} if "sqlite" in db_url else {}
 )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
