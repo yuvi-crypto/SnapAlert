@@ -16,7 +16,7 @@ class Settings(BaseSettings):
 
     # App
     database_url: str = "sqlite:///./snapalert.db"
-    secret_key: str = "snapalert-secret-key-2024"
+    secret_key: str = ""  # REQUIRED – set via SECRET_KEY env var
     poll_interval_seconds: int = 300
     match_threshold: float = 0.65
     demo_city: str = "San Jose"

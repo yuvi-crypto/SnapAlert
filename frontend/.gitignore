@@ -1,4 +1,10 @@
+# Environment variables – never commit real secrets
+.env
+.env.local
+.env.*.local
+
 # Logs
+
 logs
 *.log
 npm-debug.log*
